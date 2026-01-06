@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Created by Katie Niederhoff on 6/19/2025 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Clock</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Syne+Mono&family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Doto:wght@100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        .background {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color .5s;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            vertical-align: middle;
+        }
+
+        html body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Cutive Mono', 'Comic Sans MS', sans-serif;
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        #hex {
+            text-align: center;
+            font-size: 4.5em;
+            display: block;
+            min-width: 200px;
+            font-weight: 100;
+        }
+
+        #about,
+        #customize,
+        #customizeButtons,
+        #links {
+            display: block;
+            font-size: 0.9em;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding-right: 10px;
+            font-weight: 300;
+        }
+
+        #customize, #links {
+            top: 10px;
+        }
+
+        #links {
+            left: 200px;
+            text-align: end;
+        }
+
+        #customizeButtons {
+            background-color: rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 15px 20px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            height: min-content;
+            list-style: none;
+            margin: 10px 0px 0px 15px;
+            top: 3em;
+            padding: 0px 20px 5px 0px;
+        }
+
+        #question, #show-links {
+            text-decoration: none;
+            background: none;
+            border: none;
+            font: inherit;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .input {
+            margin-left: 4px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            padding: 3px;
+
+            >label {
+                padding-left: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+
+        <div class="absolute-center">
+            <p id="hex"></p>
+        </div>
+
+        <div id="customize">
+            <button id="question" href="#" onclick="showInfo('customizeButtons')">Customize</button>
+            <ul id="customizeButtons" style="display: none;">
+                <li>
+                    <input type="range" name="e" id="hue" class="input" min=1 max=24 step=1 value="3">
+                    <label for="e">Hue Cycles</label>
+                </li>
+                <li>
+                    <input type="range" name="f" id="sat" class="input" min=1 max=24 step=1 value="5">
+                    <label for="f">Saturation</label>
+                </li>
+                <li>
+                    <input type="text" name="g" id="spacer" class="input" value=" - ">
+                    <label for="g">Spacer</label>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox" name="a" id="color-code" checked="true">
+                    <label for="a">Color Code</label>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox" name="b" id="percent" checked="true">
+                    <label for="b">Percent of Day</label>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox" name="c" id="time">
+                    <label for="c">Time</label>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox" name="d" id="date">
+                    <label for="d">Date</label>
+                </li>
+                <li>
+                    <select name="h" id="font">
+                        <option>Cutive Mono</option>
+                        <option>Syne Mono</option>
+                        <option>Chivo Mono</option>
+                        <option>Doto</option>
+                    </select>
+                    <label for="h">Font</label>
+                </li>
+            </ul>
+        </div>
+
+        <div id="about">
+            <button id="question" href="#" onclick="showInfo('explanation')">What is this?</button>
+            <span id="explanation" style="display: none;"> Modeled heavily after
+                <a href="https://www.jacopocolo.com/hexclock/#" target="_blank">Jacopo's clock</a>.
+                This is modified to cover a full spectrum of colors based on the percent of the day rather than
+                the 24 hour time.
+            </span>
+        </div>
+
+        <div id="links" style="display: none;">
+            <button id="show-links" href="#" onclick="showInfo('custom-link-list')">Custom Links</button>
+            <ul id="custom-link-list" style="display: none;">
+                <li>
+                    <p><a>LINK</a></p>
+                </li>
+                <li>
+                    <p><a>LINK WITH MROE</a></p>
+                </li>
+                <li>
+                    <p><a>LINK</a></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+<script>
+    function hslToRgb(h, s, l) {
+        // formula from https://www.rapidtables.com/convert/color/hsl-to-rgb.html
+        let r, g, b;
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        const x = c * (1 - Math.abs(h / 60 % 2 - 1));
+        const m = l - c / 2;
+
+        if (h < 60) { r = c; g = x, b = 0; }
+        else if (h < 120) { r = x; g = c; b = 0; }
+        else if (h < 180) { r = 0; g = c; b = x; }
+        else if (h < 240) { r = 0; g = x; b = c; }
+        else if (h < 300) { r = x; g = 0; b = c; }
+        else { r = c; g = 0; b = x; }
+
+        return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
+    }
+
+    function calculateHSL(d) {
+        const rangeValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100, 150, 200, 500, 1000, 5000, 10000, 30000, 50000, 100000];
+
+        const hueCycles = rangeValues[document.getElementById('hue').value]; // number of times in one 24 hour day it goes through the full spectrum
+        const saturationCycles = rangeValues[document.getElementById('sat').value]; // number of times in one day it will reach peak saturation
+
+        const h = d.getHours();
+        const m = d.getMinutes();
+        const s = d.getSeconds();
+        const totalSeconds = h * 3600 + m * 60 + s;
+        const secondsPerDay = 86400;
+        const percentageOfDay = totalSeconds / secondsPerDay;
+
+        const cycleLengthSeconds = 24 / saturationCycles * 60 * 60;
+        const cyclePeakSeconds = cycleLengthSeconds / 2;
+        const percentThroughCycle = totalSeconds % cyclePeakSeconds / cyclePeakSeconds;
+
+        const hue = (((percentageOfDay * hueCycles) % secondsPerDay * 360) % 360);
+        const saturation = (totalSeconds % cycleLengthSeconds < cyclePeakSeconds) ? (.1 + .9 * percentThroughCycle) : (1 - .9 * (percentThroughCycle));
+        const lightness = (h % 2 !== 0) ? (.05 + .85 * (m / 60)) : (.9 - .85 * (m / 60)); // Lightness varies from 10% to 90% over the hour (up on odd, down on even)
+
+        return [hue, saturation, lightness, percentageOfDay]
+    }
+
+    function showInfo(tag) {
+        var x = document.getElementById(tag);
+        if (x.style.display === "none") {
+            x.style.display = "inline";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function refreshData() {
+        const d = new Date();
+        const [h, s, l, percentageOfDay] = calculateHSL(d);
+        const [r, g, b] = hslToRgb(h, s, l);
+
+        // use for display:
+        const backgroundColor = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+        const cleanPercentageOfDay = (Math.trunc(percentageOfDay * 100)).toString() + "%";
+        const militaryTime = (d.getHours()).toString().padStart(2, 0) +
+            ":" + (d.getMinutes()).toString().padStart(2, 0) +
+            ":" + (d.getSeconds()).toString().padStart(2, 0);
+        const date = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
+
+        // get selected items to show on display
+        const displayTextParams = [
+            document.getElementById('color-code').checked ? backgroundColor : null,
+            document.getElementById('percent').checked ? cleanPercentageOfDay : null,
+            document.getElementById('time').checked ? militaryTime : null,
+            document.getElementById('date').checked ? date : null
+        ].filter(item => item !== null);
+
+        $("#hex").html(displayTextParams.join(document.getElementById('spacer').value));
+        $(".background").css("background-color", backgroundColor);
+        $("body").css("font-family", document.getElementById('font').value + ', sans-serif');
+        setTimeout(refreshData, 1000);
+    }
+
+    $(document).ready(function () {
+        refreshData();
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#choices {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#choices button {
+    height: 300px;
+    padding: 4em;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+#choices button:hover {
+    background-color: rgba(102, 166, 23, 0.458);
+}
+
+#controls * {
+    margin: 20px 10px;
+    padding: 5px;
+}
+
+#result-counts {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+#result-counts>* {
+    margin: 20px;
+}
+
+@media all and (min-width: 500px) and (max-width : 1000px) {
+    #choices {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+}

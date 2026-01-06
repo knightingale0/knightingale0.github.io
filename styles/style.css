@@ -1,0 +1,93 @@
+body{
+    background-color: #2E1A3E;
+    display: grid;
+    grid-template-areas:    "header header header"
+                            "aside picture picture"
+                            "aside text text"
+                            "footer footer footer";
+    font-family: monospace;                     
+}
+
+body > * {
+    margin: 50px;
+}
+
+header {
+    grid-area: header;
+    background-color: #E8E8E8;
+    color: #28242B;
+    margin-bottom: 0;
+}
+
+header * {
+    padding: 0 20px;
+    display: inline-block;
+}
+
+picture{
+    grid-area: picture;
+}
+
+img {
+    width: 100%;
+}
+
+main {
+    grid-area: text;
+    background-color: #E8E8E8;
+    color: #303E1A;
+    max-width: 150%;
+    margin-top: 0;
+}
+
+main * {
+    margin: 20px;
+}
+
+main > p:before{
+    content: "> ";
+}
+
+aside{
+    grid-area: aside;
+    background-color: #28242B;
+    color: #B559FF;
+    margin-right: 0;
+}
+
+aside h2{
+    margin: 20px;
+    text-decoration: underline;
+}
+
+aside ul {
+    padding: 0;
+    margin: 20px;
+    margin-bottom: 50px;
+    width: fit-content;
+}
+
+aside li {
+    list-style: none;
+    margin: 10px;
+    padding-left: none;
+    width: fit-content;
+}
+
+aside a {
+    color: #B559FF;
+    text-decoration: solid;
+    font-weight: bold;
+}
+
+aside a:hover{
+    background-color: #000000;
+    color: lime;
+    /* padding: 10px; */
+}
+
+footer{
+    grid-area: footer;
+    color: #E8E8E8;
+    margin: 0 60px 10px;
+}

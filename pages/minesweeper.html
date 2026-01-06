@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Minesweeper</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		#game-area button {
+			height: 2em;
+			width: 2em;
+			border-radius: 0px;
+			font-size: 125%;
+			font-weight: bold;
+		}
+
+		#game-area {
+			border: 1px solid black;
+			width: fit-content;
+		}
+
+		button:disabled {
+			background-color: darkgray;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<p>New Game:</p>
+		<button onclick="setBoard(5,5)">Intro</button>
+		<button onclick="setBoard(10,10)">Beginner</button>
+		<button onclick="setBoard(10,20)">Intermediate</button>
+		<button onclick="setBoard(15,25)">Hard</button>
+		<button onclick="setBoard(15,35)">Expert</button>
+		<!-- <div id="'custom-size">
+			<input type="number" value="15" name="rows" id="rows">
+			<input type="number" value="15" name="cols" id="cols">
+			<button onclick="setBoard(rows.value, cols.value)">Custom</button>
+		</div> -->
+	</div>
+	<p id="status">There are <span id="flag-countdown">X</span> flags to place</p>
+	<div id="game-area">
+		<button>placeholder</button>
+	</div>
+</body>
+
+<script>
+	const NUMBER_COLORS = ['#f0f0f0', '#0000ff', '#00b32d', '#b30000', '#8600b3', '#b3b300', '#0099cc', '#cc00cc', '#b30000', '', 'black'];
+	const NUMBER_CHARACTERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+	const EMPTY_CHARACTER = '-'; // this is made transparent, just make sure it's the same size as all other characters
+	const FLAG_CHARACTER = 'F';
+	const BOMB_CHARACTER = 'X';
+	const BOMB_VALUE = '10';
+
+	// global variables for easier code
+	let FIRST_CLICK = true;
+	let UNEXPOSED = 0;
+	let ROWS = 0;
+	let COLS = 0;
+
+	// loops through all board buttons once
+	function disableButtons() {
+		const gameTiles = document.getElementsByClassName('g-b');
+		for (const button of gameTiles) {
+			button.disabled = true;
+		}
+		console.log('game over');
+	}
+
+	// if first board is no good, makes a new one with the spot it knows has to be 0 and exposes that spot again
+	function firstClick(i, j) {
+		const id = i + '-' + j;
+		const button = document.getElementById(id);
+		if (button.value !== '0') {
+			setBoard(ROWS, COLS, i, j);
+			clickL(i, j);
+		}
+		FIRST_CLICK = false;
+	}
+
+	// recursive call on only unexposed neighbors that turn out to be 0 
+	function exposeZeros(i, j) {
+		const neighbors = getNeighborCoords(i, j); // all possible connected cells
+		for (const pair of neighbors) {
+			const r = pair[0];
+			const c = pair[1];
+			const id = r + '-' + c;
+			const button = document.getElementById(id);
+			// if it's blank expose it
+			try {
+				if (button.innerHTML === EMPTY_CHARACTER) {
+					button.innerHTML = NUMBER_CHARACTERS[button.value];
+					button.style = 'color:' + NUMBER_COLORS[button.value] + '; background-color:white;';
+					UNEXPOSED--;
+					if (button.value === '0') { // only runs if the newly exposed neighbor is a zero
+						exposeZeros(r, c);
+					}
+				}
+			} catch (error) { }
+		}
+	}
+
+	// exposes the tile you clicked if it's blank, then extra logic if it's a bomb or a 0, then checks win state
+	function clickL(i, j) {
+		if (FIRST_CLICK) {
+			firstClick(i, j);
+		}
+		const id = i + '-' + j;
+		const button = document.getElementById(id);
+
+		// only do stuff if the tile is blank			
+		if (button.innerHTML === EMPTY_CHARACTER) {
+			if (button.value === BOMB_VALUE) {
+				button.innerHTML = BOMB_CHARACTER;
+				button.style = 'color:black; background-color:red;';
+				disableButtons();
+				document.getElementById('status').innerHTML = 'You lost! Try again?';
+			} else {
+				button.innerHTML = NUMBER_CHARACTERS[button.value];
+				button.style = 'color:' + NUMBER_COLORS[button.value] + '; background-color:white;';
+				UNEXPOSED--;
+				if (button.value === '0') { // recursively expose neighbors
+					exposeZeros(i, j);
+				}
+				// check if win state
+				if (UNEXPOSED === 0) {
+					document.getElementById('status').innerHTML = 'You win!! :D';
+					disableButtons();
+				}
+			}
+		}
+	}
+
+	// for loop through neighbors twice, calls leftclick
+	function checkFlagCount(i, j) {
+		// get button that was clicked and number of flags it should be touching
+		const id = i + '-' + j;
+		const button = document.getElementById(id);
+		let flagsNeeded = parseInt(button.value);
+		const neighbors = getNeighborCoords(i, j);
+
+		// get the number of flags it's actually touching by checking neighbors (8 calls)
+		for (const pair of neighbors) {
+			const id = pair[0] + '-' + pair[1];
+			const button = document.getElementById(id);
+			try {
+				if (button.innerHTML === FLAG_CHARACTER) {
+					flagsNeeded--;
+				}
+			} catch (error) { }
+		}
+
+		// if it's touching the correct number of flags, expose all neighbors
+		// gets messy because a neighbor could be anything, so needs to call the full left click method
+		if (flagsNeeded === 0) {
+			for (const pair of neighbors) {
+				try {
+					clickL(pair[0], pair[1]);
+				} catch (error) { }
+			}
+		}
+	}
+
+	// calls checkflagcount
+	function clickR(i, j) {
+		const id = i + '-' + j;
+		const button = document.getElementById(id);
+		// if already a flag, remove it
+		if (button.innerHTML === FLAG_CHARACTER) {
+			button.innerHTML = EMPTY_CHARACTER;
+			button.style = 'color:transparent;';
+			const newFlagCount = parseInt(document.getElementById('flag-countdown').innerHTML) + 1;
+			document.getElementById('flag-countdown').innerHTML = newFlagCount;
+		}
+		// if blank, add flag
+		else if (button.innerHTML === EMPTY_CHARACTER) {
+			button.innerHTML = FLAG_CHARACTER;
+			button.style = 'color:black;';
+			const newFlagCount = document.getElementById('flag-countdown').innerHTML - 1;
+			document.getElementById('flag-countdown').innerHTML = newFlagCount;
+		}
+		// if a number, try to expose neighbors
+		else {
+			checkFlagCount(i, j);
+		}
+	}
+
+	// for loop through bombs
+	function addBombs(gameArray, rows, cols, bombs, clickedrow, clickedcol) {
+		for (let index = 0; index < bombs; index++) {
+			const targetRow = Math.floor(Math.random() * rows);
+			const targetCol = Math.floor(Math.random() * cols);
+			const neighbors = getNeighborCoords(targetRow, targetCol);
+			neighbors.push([targetRow, targetCol])
+			let validLocation = true;
+
+			// don't let a bomb be placed on this tile or any neighbors
+			for (const pair of neighbors) {
+				if (pair[0] === clickedrow && pair[1] === clickedcol) {
+					validLocation = false;
+				}
+			}
+
+			if (validLocation && gameArray[targetRow][targetCol] === undefined) {
+				gameArray[targetRow][targetCol] = BOMB_VALUE;
+			} else {
+				index--;
+			}
+		}
+		return gameArray;
+	}
+
+	// returns 1 if the cell is a bomb, 0 otherwise
+	function isBomb(board, row, col) {
+		try {
+			if (board[row][col] === BOMB_VALUE) {
+				return 1;
+			}
+		}
+		catch { }
+		return 0;
+	}
+
+	// check every cell and the neighbors of every cell
+	function addProxNumbers(gameArray, rows, cols) {
+		for (let i = 0; i < rows; i++) {
+			for (let j = 0; j < cols; j++) {
+				if (gameArray[i][j] === undefined) {
+					let numberOfBombs = 0;
+					const neighbors = getNeighborCoords(i, j);
+					for (let index = 0; index < neighbors.length; index++) {
+						numberOfBombs += isBomb(gameArray, neighbors[index][0], neighbors[index][1]);
+					}
+					gameArray[i][j] = numberOfBombs;
+				}
+			}
+		}
+		return gameArray;
+	}
+
+	// calls a foor loop through bombs and a double for loop on every cell and neighbors
+	function makeButtonGrid(rows, cols, bombs, clickedrow, clickedcol) {
+		let gameArray = new Array(rows);
+		for (let index = 0; index < rows; index++) {
+			gameArray[index] = new Array(cols);
+		}
+		gameArray = addBombs(gameArray, rows, cols, bombs, clickedrow, clickedcol);
+		gameArray = addProxNumbers(gameArray, rows, cols);
+		return gameArray;
+	}
+
+	function makeButtonGridString(gameBoard, rows, cols) {
+		let gameBoardString = '';
+		for (let i = 0; i < rows; i++) {
+			for (let j = 0; j < cols; j++) {
+				const scriptString = 'onclick=clickL(' + i + ',' + j + ') oncontextmenu=clickR(' + i + ',' + j + ') ';
+				const id = 'id=\'' + i + '-' + j + '\' ';
+				const value = 'value=' + gameBoard[i][j] + ' ';
+				const button = '<button class=\'g-b\' style=\'color:transparent;\' ' + scriptString + id + value + '>' + EMPTY_CHARACTER + '</button>';
+				gameBoardString += button;
+			}
+			gameBoardString += '<br>';
+		}
+		return gameBoardString;
+	}
+
+	function getNeighborCoords(i, j) {
+		const coord1 = [i - 1, j - 1];
+		const coord2 = [i - 1, j];
+		const coord3 = [i - 1, j + 1];
+		const coord4 = [i, j - 1];
+		const coord5 = [i, j + 1];
+		const coord6 = [i + 1, j - 1];
+		const coord7 = [i + 1, j];
+		const coord8 = [i + 1, j + 1];
+		return [coord1, coord2, coord3, coord4, coord5, coord6, coord7, coord8];
+	}
+
+	function setBoard(rows=5, cols=5, clickedrow = 0, clickedcol = 0) {
+		ROWS = rows;
+		COLS = cols;
+		FIRST_CLICK = true;
+		const bombs = Math.floor(rows * cols * .2);
+		UNEXPOSED = (rows * cols) - bombs;
+		const gameBoard = makeButtonGrid(rows, cols, bombs, clickedrow, clickedcol);
+		document.getElementById('game-area').innerHTML = makeButtonGridString(gameBoard, rows, cols);
+		document.getElementById('status').innerHTML = 'There are <span id=\'flag-countdown\' > ' + bombs + '</span > flags to place';
+	}
+
+	$(document).ready(function () {
+		setBoard(5,5);
+	});
+
+	document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+</html>

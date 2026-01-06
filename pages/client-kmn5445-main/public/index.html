@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Worm Count</title>
+    <meta name="description" content="Worm Counter for 344 Client Project">
+    <meta name="author" content="Katie Niederhoff">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="experiment-name">Blister Mutation</h1>
+        <h2 id="dish-name">Petri Dish 1</h2>
+    </header>
+
+    <main>
+
+        <section id="controls">
+            <select id="button-choice" onchange="selectDichotomy()">
+                <option value="none"></option>
+                <option value="mature">Maturity</option>
+                <option value="sex">Sex</option>
+                <option value="coord">Coordination</option>
+                <option value="mutant">Mutant</option>
+            </select>
+
+            <button id="reset" onclick="resetCounts()">Reset Counts</button>
+            <button id="save" onclick="save()">Done/Save</button>
+        </section>
+
+        <section id="choices">
+            <button id="option1" onclick="upCount1()">1</button>
+            <button id="option2" onclick="upCount2()">2</button>
+        </section>
+
+        <section id="current-counts">
+            <h3 id="count-type">Title</h3>
+            <p id="count1">0</p>
+            <p id="count2">0</p>
+        </section>
+
+        <section id="saved-info">
+            <h2>Results - newest first</h2>
+            <section id="result-counts">
+                <!-- js updates this section with saved info -->
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>&#169; Katie Niederhoff 2025 || SWEN-344 Client Project</p>
+    </footer>
+</body>
+
+</html>

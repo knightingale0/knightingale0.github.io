@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Minesweeper</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		#game-area button {
+			height: 2em;
+			width: 2em;
+			border-radius: 0px;
+			font-size: 125%;
+			font-weight: bold;
+		}
+
+		#game-area {
+			border: 1px solid black;
+			width: fit-content;
+		}
+
+		button:disabled {
+			background-color: darkgray;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<p>New Game:</p>
+		<button onclick="setBoard(5,5)">Intro</button>
+		<button onclick="setBoard(10,10)">Beginner</button>
+	</div>
+	<div id="game-area">
+
+	</div>
+</body>
+
+<script>
+	const COLORS = ['black', 'white', 'lightgrey', 'blue'];
+	const FILL_CHARACTER = 'X';
+	const EMPTY_CHARACTER = 'O';
+	const BLANK_CHARACTER = '-';
+
+	let UNEXPOSED;
+	let BOARD;
+
+	/**
+	// for in case of win or loss
+	function disableButtons() {
+		const gameTiles = document.getElementsByClassName('g-b');
+		for (const button of gameTiles) {
+			button.disabled = true;
+		}
+		console.log('game over');
+	}
+
+	function clickL(i, j) {
+		const id = i + '-' + j;
+		const button = document.getElementById(id);
+		// expose it (update array and relevant html element)
+		// if it's an empty cell, loss
+		// check if any unexposed filled cells left, if no, win
+	}
+
+
+	function clickR(i, j) {
+		const id = i + '-' + j;
+		const button = document.getElementById(id);
+		// expose it (update array and relevant html element)
+		// if it's a filled cell, loss
+	}
+	**/
+
+	function addFilledCells(gameArray, rows, cols, bombs) {
+		for (let index = 0; index < bombs; index++) {
+			const targetRow = Math.floor(Math.random() * (rows - 1)) + 1;
+			const targetCol = Math.floor(Math.random() * (cols - 1)) + 1;
+
+			if (gameArray[targetRow][targetCol] === undefined) {
+				gameArray[targetRow][targetCol] = [FILL_CHARACTER, BLANK_CHARACTER];
+			} else {
+				index--;
+			}
+		}
+		return gameArray;
+	}
+
+	// possibly refactor later?
+	function addRules(gameArray, rows, cols) {
+
+		// get the numbers for the row by row
+		for (let i = 1; i < rows; i++) {
+			let rules = [];
+			let sequence = true;
+			let count = 0;
+			for (let j = 1; j < cols; j++) {
+				if (gameArray[i][j] === undefined) {
+					sequence = false; // we broke a streak of numbers
+				} else { // we found a tile that should be selected
+					sequence = true;
+					count++;
+				}
+				if ((!sequence || j + 1 === cols) && count !== 0) { // add the count of the series that was interupted by this void
+					rules.push(count);
+					count = 0;
+				}
+			}
+			gameArray[i][0] = rules;
+		}
+
+		// get the numbers for the cols
+		for (let j = 1; j < cols; j++) {
+			let rules = [];
+			let sequence = true;
+			let count = 0;
+			for (let i = 1; i < rows; i++) {
+				if (gameArray[i][j] === undefined) {
+					gameArray[i][j] = [EMPTY_CHARACTER, BLANK_CHARACTER]; // note that this is a blank cell					
+					sequence = false; // we broke a streak of numbers
+				} else { // we found a tile that should be selected
+					sequence = true;
+					count++;
+				}
+				if ((!sequence || i + 1 === cols) && count !== 0) { // add the count of the series that was interupted by this void
+					rules.push(count);
+					count = 0;
+				}
+			}
+			gameArray[0][j] = rules;
+		}
+
+		return gameArray;
+	}
+
+	function logBoard(board, r, c) {
+		for (let i = 0; i < r; i++) {
+			let string = i + ': '
+			for (let j = 0; j < c; j++) {
+				string += '[' + board[i][j] + '], '
+			}
+			console.log(string);
+		}
+	}
+
+	// needs work
+	function display() {
+		const rows = BOARD[0][0][0];
+		const cols = BOARD[0][0][1];
+
+		let stringToDisplay = '';
+		for (let i = 1; i < rows; i++) {
+			for (let j = 1; j < cols; j++) {
+				stringToDisplay += makeButton(i,j);
+			}
+			stringToDisplay += "<br>"
+		}
+
+		document.getElementById('game-area').innerHTML = 'displaying a ' + (rows-1) + " by " + (cols-1) + ' board...<br>' + stringToDisplay;
+	}
+
+	function makeButton(r, c) {
+		const id = r + '-' + c;
+		// const value = BOARD[r][c][0];
+		const display = BOARD[r][c][1];
+		return '<button id=\'' + id + '\'>' + display + '</button>';
+	}
+
+	function setBoard(r = 5, c = 5) {
+		const rows = r + 1;
+		const cols = c + 1;
+		const bombs = Math.floor(r * c * .5);
+		UNEXPOSED = (r * c) - bombs;
+
+		let gameArray = new Array(rows);
+		for (let index = 0; index < rows; index++) {
+			gameArray[index] = new Array(cols);
+		}
+		gameArray = addFilledCells(gameArray, rows, cols, bombs);
+		gameArray = addRules(gameArray, rows, cols);
+		gameArray[0][0] = [rows, cols];
+		BOARD = gameArray;
+		logBoard(gameArray, rows, cols);
+	}
+
+	$(document).ready(function () {
+		setBoard(10,15);
+		display();
+	});
+
+	document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+</html>
