@@ -29,8 +29,9 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
   <style type="text/css">
     /* <![CDATA[ */
     body {
-      background: rgb(58, 193, 163);
-      color: rgb(156, 185, 124);
+      background: rgb(97, 178, 161);
+      /* background-image: url("../images/WatkinsGlenStatePark-xb1tpf05xt0jn3f-446653346.jpg"); */
+      background-position: center top;
       margin: 0 24pt 0 24pt;
       font-family: Optima, sans-serif;
       font-size: 20pt;
@@ -38,7 +39,7 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
     div {
       height: 16pt;
-      color: rgb(104, 141, 175);
+      color: rgb(85, 129, 171);
     }
 
     a {
@@ -53,7 +54,7 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     #credit-list {
       float: right;
       margin-top: 22px;
-      color: #0b3;
+      color: rgb(32, 121, 56);
       height: 60pt;
       font-size: 10pt;
     }
@@ -67,13 +68,13 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     var paths = 0;
 
     var above = 'ridge,mist,flow,layer,bend,stone,shadow,tree'.split(',');
-    var below = 'flow,basin,rush,rippling,stone,cove,rock'.split(',');
-    var trans = 'billow,rush,pace,roam,trail,frame,sweep,bend,range'.split(',');
-    var imper = 'track,shade,stamp,wander,direct,run,enter';
+    var below = 'flow,basin,rippling,stone,cove,rock'.split(',');
+    var trans = 'billow,pace,roam,trail,frame,sweep,bend,range'.split(',');
+    var imper = 'track,shade,wander,direct,run,enter';
     imper = imper.split(',');
-    var intrans = 'linger,dwell,rest,wave,dream,hum'.split(',');
+    var intrans = 'linger,fall,dwell,rest,wave,dream,hum,drip'.split(',');
     var s = 's,'.split(',');
-    var texture = 'rough,fine'.split(',');
+    var texture = 'rough,fine,smooth,wet'.split(',');
 
 
     function rand_range(max) {
@@ -211,68 +212,41 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
   <div id="credit-list">
     <div>Taroko Gorge &middot; 2009-01-08</div>
-    <del><a href="original.html">Nick Montfort</a></del><br />
-    <del><a href="tokyo_garage/">Scott Rettberg</a></del> <a href="http://retts.net/tokyogarage.html">[SR]</a><br />
-    <del><a href="gorge/">J.R. Carpenter</a></del> <a href="http://luckysoap.com/generations/gorge.html">[JRC]</a><br />
-    <del><a href="whisper_wire/">J.R. Carpenter</a></del> <a
-      href="http://luckysoap.com/generations/whisperwire.html">[JRC]</a><br />
-    <del><a href="along_the_briny_beach/">J.R. Carpenter</a></del> <a
-      href="http://luckysoap.com/alongthebrinybeach/">[JRC]</a><br />
-    <del><a href="toy_garbage/">Talan Memmott</a></del> <a
-      href="http://talanmemmott.info/ex/websupplement/toygarbage/index.html">[TM]</a><br />
-    <del><a href="yoko_engorged/">Eric Snodgrass</a></del> <a
-      href="http://exinfoam.wordpress.com/2011/07/18/yoko-engorged/">[ES]</a><br />
-    <del><a href="takei_george/">Mark Sample</a></del> <a
-      href="http://samplereality.com/elit/takeigeorge.html">[MS]</a><br />
-    <del><a href="alone_engaged/">Maria Engberg</a></del> <a
-      href="http://polyaesthetics.org/AloneEngaged.html">[ME]</a><br />
-    <del><a href="fred_and_george/">Flourish Klink</a></del> <a
-      href="http://www.madelineklink.com/portfolio/fredandgeorge.html">[FK]</a><br />
-    <del><a href="argot_ogre_ok/">Andrew Plotkin</a></del> <a
-      href="http://www.eblong.com/zarf/argot-ogre-ok.html">[AP]</a><br />
-    <del><a href="designer_gulch/">Brendan Howell</a></del> <a
-      href="http://wintermute.org/brendan/?p=designer-gulch">[BH]</a><br />
-    <del><a href="inside_the_house/">Adam Sylvain</a></del> <a href="http://mason.gmu.edu/~asylvain/">[AS]</a><br />
-    <del><a href="taroko_gary/">Leonardo Flores</a></del> <a
-      href="http://academic.uprm.edu/flores/TarokoGary.html">[LF]</a><br />
-    <del><a href="snowball/">Alireza Mahzoon</a></del> <a
-      href="http://alimahzoon.com/html/mp2ab/final2.html">[AM]</a><br />
-    <del><a href="camel_tail/">Sonny Rae Tempest</a></del> <a
-      href="http://thefwordsrt.appspot.com/cameltail.html">[SRT]</a><br />
-    <del><a href="tournedo_gorge/">Kathi Inman Berens</a></del> <a
-      href="http://berens.org/kib/elit/tournedo2.html">[KIB]</a><br />
-    <del><a href="tasty_gougere/">Helen Burgess</a></del> <a
-      href="http://helenburgess.com/cheese/index.html">[HB]</a><br />
-    <del><a href="scholars_contemplate_the_irish_beer/">Judy Malloy</a></del> <a
-      href="http://www.artcalifornia.net/scholars_contemplate.html">[JM]</a><br />
-    <del><a href="dark_side_of_the_wall/">Bob Bonsall</a></del> <a
-      href="http://mason.gmu.edu/~rbonsal1/DarkSideoftheWall.html">[BB]</a><br />
-    <del><a href="tacoma_grunge/">Chuck Rybak</a></del> <a href="http://www.sadiron.com/tacoma-grunge/">[CR]</a><br />
-    <del><a href="pigeon_forge/">Zach Whalen</a></del> <a
-      href="http://zachwhalen.net/pg/forge/forge.html">[ZW]</a><br />
-    <del><a href="transmogrify/">Leonardo Flores</a></del> <a
-      href="http://springgunpress.com/leonardoflores/transmogrify">[LF]</a><br />
-    <del><a href="take_ogre/">John Pat McNamara</a></del> <a
-      href="http://www.digitalvitalism.com/take_ogre.html">[JPM]</a><br />
-    <del><a href="wandering_through_taroko_gorge/">James T. Burling</a></del> <a
-      href="http://www.burling.org/jtburling/Wandering.html">[JTB]</a><br />
-    <del><a href="wawoz_taroko/">Piotr Marecki &amp;<br />Aleksandra Małecka</a></del> <a
+    <del>Nick Montfort</del><br />
+    <del>Scott Rettberg</del> <a href="http://retts.net/tokyogarage.html">[SR]</a><br />
+    <del>J.R. Carpenter</del> <a href="http://luckysoap.com/generations/gorge.html">[JRC]</a><br />
+    <del>J.R. Carpenter</del> <a href="http://luckysoap.com/generations/whisperwire.html">[JRC]</a><br />
+    <del>J.R. Carpenter</del> <a href="http://luckysoap.com/alongthebrinybeach/">[JRC]</a><br />
+    <del>Talan Memmott</del> <a href="http://talanmemmott.info/ex/websupplement/toygarbage/index.html">[TM]</a><br />
+    <del>Eric Snodgrass</del> <a href="http://exinfoam.wordpress.com/2011/07/18/yoko-engorged/">[ES]</a><br />
+    <del>Mark Sample</del> <a href="http://samplereality.com/elit/takeigeorge.html">[MS]</a><br />
+    <del>Maria Engberg</del> <a href="http://polyaesthetics.org/AloneEngaged.html">[ME]</a><br />
+    <del>Flourish Klink</del> <a href="http://www.madelineklink.com/portfolio/fredandgeorge.html">[FK]</a><br />
+    <del>Andrew Plotkin</del> <a href="http://www.eblong.com/zarf/argot-ogre-ok.html">[AP]</a><br />
+    <del>Brendan Howell</del> <a href="http://wintermute.org/brendan/?p=designer-gulch">[BH]</a><br />
+    <del>Adam Sylvain</del> <a href="http://mason.gmu.edu/~asylvain/">[AS]</a><br />
+    <del>Leonardo Flores</del> <a href="http://academic.uprm.edu/flores/TarokoGary.html">[LF]</a><br />
+    <del>Alireza Mahzoon</del> <a href="http://alimahzoon.com/html/mp2ab/final2.html">[AM]</a><br />
+    <del>Sonny Rae Tempest</del> <a href="http://thefwordsrt.appspot.com/cameltail.html">[SRT]</a><br />
+    <del>Kathi Inman Berens</del> <a href="http://berens.org/kib/elit/tournedo2.html">[KIB]</a><br />
+    <del>Helen Burgess</del> <a href="http://helenburgess.com/cheese/index.html">[HB]</a><br />
+    <del>Judy Malloy</del> <a href="http://www.artcalifornia.net/scholars_contemplate.html">[JM]</a><br />
+    <del>Bob Bonsall</del> <a href="http://mason.gmu.edu/~rbonsal1/DarkSideoftheWall.html">[BB]</a><br />
+    <del>Chuck Rybak</del> <a href="http://www.sadiron.com/tacoma-grunge/">[CR]</a><br />
+    <del>Zach Whalen</del> <a href="http://zachwhalen.net/pg/forge/forge.html">[ZW]</a><br />
+    <del>Leonardo Flores</del> <a href="http://springgunpress.com/leonardoflores/transmogrify">[LF]</a><br />
+    <del>John Pat McNamara</del> <a href="http://www.digitalvitalism.com/take_ogre.html">[JPM]</a><br />
+    <del>James T. Burling</del> <a href="http://www.burling.org/jtburling/Wandering.html">[JTB]</a><br />
+    <del>Piotr Marecki &amp;<br> Aleksandra Małecka</a></del> <a
       href="http://ha.art.pl/nick_montfort/wawoz_taroko.html">[PM&amp;AM]</a><br />
-    <del><a href="hey_gorgeous/">Darius Kazemi</a></del> <a
-      href="http://tinysubversions.com/stuff/gorge/">[DK]</a><br />
-    <del><a href="54_61_72_6f_6b_6f/">Roman Kalinovski</a></del> <a
-      href="http://www.romankalinovski.com/#/digital-projects/">[RK]</a><br />
-    <del><a href="take_gonzo/">Anders Gonzo Gaard</a></del> <a href="http://www.kardemommepartiet.no/">[AGG]</a><br />
-    <del><a href="wawoz_krakow/">Piotr Marecki</a></del> <a
-      href="http://ha.art.pl/nick_montfort/wawoz_taroko.html">[PM]</a><br />
-    <del><a href="garaz_w_tokio/">Scott Rettberg &amp;<br />Mariusz Pisarski</a></del> <a
-      href="http://techsty.art.pl/m10/garaz_tokio.html">[SR&amp;MP]</a><br />
-    <del><a href="oko_na_donbas/">Mariusz Pisarski</a></del> <a
-      href="http://techsty.art.pl/m10/oko_na_donbas.html">[MP]</a><br />
-    <del><a href="karaoke_mirage/">Robert Fletcher</a></del> <a
-      href="http://digitaliteracies.net/Karaoke_Mirage.html">[BF]</a><br />
-    <del><a href="ok_artgoer_go/">Stuart Moulthrop</a></del> <a
-      href="http://pantherfile.uwm.edu/moulthro/hypertexts/myGorge/">[SM]</a><br />
+    <del>Darius Kazemi</del> <a href="http://tinysubversions.com/stuff/gorge/">[DK]</a><br />
+    <del>Roman Kalinovski</del> <a href="http://www.romankalinovski.com/#/digital-projects/">[RK]</a><br />
+    <del>Anders Gonzo Gaard</del> <a href="http://www.kardemommepartiet.no/">[AGG]</a><br />
+    <del>Piotr Marecki</del> <a href="http://ha.art.pl/nick_montfort/wawoz_taroko.html">[PM]</a><br />
+    <del>Scott Rettburg &amp;<br> Mariusz Pisarski</del> <a href="http://techsty.art.pl/m10/garaz_tokio.html">[SR&amp;MP]</a><br />
+    <del>Mariusz Pisarski</del> <a href="http://techsty.art.pl/m10/oko_na_donbas.html">[MP]</a><br />
+    <del>Robert Fletcher</del> <a href="http://digitaliteracies.net/Karaoke_Mirage.html">[BF]</a><br />
+    <del>Stuart Moulthrop</del> <a href="http://pantherfile.uwm.edu/moulthro/hypertexts/myGorge/">[SM]</a><br />
     <a href="http://nickm.com">Nick Montfort &middot; 2016-03-01</a><br>
     <a target='_blank' href="https://knightingale0.github.io">Katie Niederhoff&middot; 2026-02-19</a><br />
 
