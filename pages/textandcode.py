@@ -2,7 +2,7 @@ filename = "pattern.txt"
 
 message = open(filename)
 
-stitch_map = {1: " o", 2: " .", 3: " ..", 4: " ...", 5: " x", 6: " xx", 7: " xxx", 8:" t", 9: " tt", 10: " ttt", 11: " T", 12: " TT", 13:" TTT", 14:" p", 15:" pp", 16:" ppp"}
+stitch_map = {0: " oo", 1: " o", 2: " .", 3: " ..", 4: " ...", 5: " x", 6: " xx", 7: " xxx", 8:" t", 9: " tt", 10: " ttt", 11: " T", 12: " TT", 13:" TTT", 14:" p", 15:" pp", 16:" ppp"}
 punc = set()
 
 def load_punc():
