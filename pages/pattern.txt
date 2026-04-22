@@ -1,1 +1,49 @@
-In our first meeting we discussed some general ideas for the cipher, and the main one that stuck was the idea of splitting the message into chunks. Initially the plan was to have three, regardless of message length or keys, and then apply some simpler cipher method to each chunk and recombine the encrypted text to get our full ciphertext. This concept made it to the final design, though with the caveat that the number is based on a key, rather than a set value. Other thoughts from the initial meeting included having a first phase of encryption where we would encrypt the key we would use on the text, to hopefully throw off decryption, as well as the idea of swapping letters. These were cut because it added another key without adding another layer of encryption to the actual text, and took a long time to encrypt and decrypt, which did add security but pushed us close to the 15 minute limit.
+The book would, at first glance, seem to be an object
+
+about which we all possess essential knowledge. It is, for
+
+many children, among the first playthings we encounter,
+
+whether in the soft cloth books of contrasting colors and
+
+bold patterns often kept in the crib to stimulate vision, or
+
+a little later in board books like Dorothy Kunhardt’s
+ 
+Pat the Bunny (1940), with contrasting textures to activate our
+
+sense of touch and simple words and phrases to help us
+
+imagine a world arranged neatly into narratives. The book
+
+would seem like a solid object, yet it is presently poised to
+
+melt into air, or, if we are honest, has been threatening to
+
+do so in popular consciousness for at least a decade, thanks
+
+to the advent in 2006 of the Sony Reader and in 2007 of
+
+the Amazon Kindle, digital reading devices many seem
+
+to think will render books obsolete. We might trace fears
+
+over the book’s decline even earlier, to the first part of the
+
+twentieth century, a period of rapid technological change
+
+in which the phonograph, film, and television reinvented
+
+storytelling on a grand scale. Book history and Victorian
+
+studies scholar Leah Price, in a 2012 New York Times
+ 
+essay, chronicles such admonitions, following them back to
+
+the Romantic period, when Théophile Gautier professed
+
+that burgeoning newspapers would kill the book.
+
+Such reports of the book’s death are abundant and, perhaps,
+
+overstated.
