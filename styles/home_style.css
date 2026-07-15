@@ -1,0 +1,63 @@
+body {
+    background-color: #241136;
+    color: #f5f1e3;
+}
+
+#grid-container {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#grid-container>* {
+    width: 300px;
+    /* height: 300px; */
+    height: fit-content;
+    margin: 30px;
+    background-color: #111929;
+    padding: 20px;
+    border-radius: 5%;
+}
+
+#center {
+    border-radius: 50%;
+    border: solid #975B00 5px;
+    box-shadow: 0 0 80px 5px rgba(255, 255, 255, 0.356);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 50px;
+    width: 300px;
+    height: 300px;
+}
+
+#center-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: circle(50%);
+    object-position: top;
+    zoom: 200%;
+}
+
+#center:hover {
+    box-shadow: 0 0 100px 25px rgba(255, 255, 255, 0.356);
+}
+
+#moon-phase-info, #moon-illum-perc {
+    margin: 10px;
+}
+
+header {
+    background-color: #111929;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #111929;
+}
