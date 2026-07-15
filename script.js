@@ -81,23 +81,23 @@ let properties = ""
 
 function flippedMoon() {
     moonIsFlipped = !moonIsFlipped
-    const centerImg = document.getElementById("center-image");
+    const pictureImg = document.getElementById("moon-image");
     const moonPhaseDesc = document.getElementById("moon-phase-name");
     const moonIllumPerc = document.getElementById("moon-illum-perc");
     if (moonIsFlipped) {
-        centerImg.style.display = "none"
+        pictureImg.style.display = "none"
         moonIllumPerc.style.display = "block"
         moonPhaseDesc.style.display = "block"
     }
     else {
-        centerImg.style.display = "block"
+        pictureImg.style.display = "block"
         moonIllumPerc.style.display = "none"
         moonPhaseDesc.style.display = "none"
     }
 }
 
 function goTo(target) {
-    window.location.href=target
+    window.open(target, '_blank')
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -105,8 +105,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     try {
         image = await getMoon()
         properties = await getPhase()
-        const center = document.getElementById("center-image");
-        center.src = image
+        const picture = document.getElementById("moon-image");
+        picture.src = image
 
         const moonPhaseDesc = document.getElementById("moon-phase-name");
         const moonIllumPerc = document.getElementById("moon-illum-perc");
