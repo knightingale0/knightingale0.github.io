@@ -1,8 +1,25 @@
 const username = "c59d4401-3b7d-4e78-b9e2-1afbe0837c84"
 const password = "c3cfeb44eda07f482852183e90e9279d784ac4ed28276538c8fe3c530c14952fb5c1af16e8a654b7d7edd9a9bbff2b71fc71329bbb7604e72666fcdb258fa5d5a333f649bf6e4402c719e7e4a9708483deea49008600f0f39053c91a794718f10794a3b4bddb165967a67b143dfab59d"
 
-const today = new Date()
+const today = new Date(2025, 4, 6, 11, 45)
+// const today = new Date()
+console.log("date=", today)
 const date = (today.getFullYear()) + "-" + (today.getMonth() + 1).toString().padStart(2, "0") + "-" + (today.getDate()).toString().padStart(2, "0")
+
+let lat = 43.161030
+let long = -77.610924
+
+function getLocation(){
+    // get location, default to rochester
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+}
+
+function showPosition(pos) {
+    lat = pos.coords.latitude
+    long = pos.coords.longitude
+}
 
 const requestBody = {
     "format": "svg",
@@ -11,11 +28,11 @@ const requestBody = {
         "backgroundStyle": "stars",
         "backgroundColor": "black",
         "headingColor": "none",
-        "textColor": "none"
+        "textColor": "black"
     },
     "observer": {
-        "latitude": 43.161030, // make based on viewer location?
-        "longitude": -77.610924, // same as above
+        "latitude": lat, // make based on viewer location?
+        "longitude": long, // same as above
         "date": date // make the current date
     },
     "view": {
@@ -44,7 +61,7 @@ async function getMoon() {
 }
 
 async function getPhase() {
-    const url = "https://aa.usno.navy.mil/api/celnav?ID=Knightingale&date=" + date + "&time=" + "00:00" + "&coords=43.161030, -77.610924"
+    const url = "https://aa.usno.navy.mil/api/celnav?ID=Knightingale&date=" + date + "&time=" + "00:00" + "&coords="+lat+", "+long+""
     const response = await fetch(url, {
         method: "GET",
     })
@@ -79,7 +96,12 @@ function flippedMoon() {
     }
 }
 
+function goTo(target) {
+    window.location.href=target
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
+    await getLocation()
     try {
         image = await getMoon()
         properties = await getPhase()
@@ -91,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         moonPhaseDesc.innerHTML = properties.moon_phase
         moonIllumPerc.innerHTML = properties.moon_illum + "% Illuminated"
-        
+
         moonPhaseDesc.style.display = "none"
         moonIllumPerc.style.display = "none"
     } catch (error) {

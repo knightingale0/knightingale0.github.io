@@ -24,7 +24,7 @@ body {
 #center {
     border-radius: 50%;
     border: solid #975B00 5px;
-    box-shadow: 0 0 80px 5px rgba(255, 255, 255, 0.356);
+    /* box-shadow: 0 0 80px 5px rgba(255, 255, 255, 0.356); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,7 +48,8 @@ body {
     box-shadow: 0 0 100px 25px rgba(255, 255, 255, 0.356);
 }
 
-#moon-phase-info, #moon-illum-perc {
+#moon-phase-info,
+#moon-illum-perc {
     margin: 10px;
 }
 
@@ -60,4 +61,17 @@ footer {
     position: fixed;
     bottom: 0;
     background-color: #111929;
+}
+
+h2>a {
+    text-decoration: none;
+    color: #f5f1e3;
+}
+
+.clickable-project:hover {
+    box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.356);
+}
+
+.clickable-project:hover>h2{
+    color: #975B00;
 }

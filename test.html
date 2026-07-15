@@ -13,18 +13,24 @@
 
 <body>
     <header>
-        <span>Welcome!</span>
+        <h2>Katie Niederhoff</h2>
     </header>
     <main>
         <div id="grid-container">
 
             <div>
-                <h3>About</h3>
-                <p>...</p>
+                <h2>About</h2>
+                <p>Junior Software Engineering student at Rochester Institute of Technology.</p>
+                <p>
+                    Double minor in Psychology and Book History
+                </p>
+                <p>
+                    Passionate about space, sustainability, and learning new skills.
+                </p>
             </div>
 
             <div>
-                <span>important links</span>
+                <h2>Important links</h2>
                 <ul>
                     <li><a href="https://www.linkedin.com/in/kniederhoff/" target="_blank">LinkedIn</a></li>
                     <li><a href="https://github.com/knightingale0">Github</a></li>
@@ -37,19 +43,50 @@
                 <div id="moon-illum-perc" display="none"></div>
             </div>
 
-            <div><span>spanroject</span></div>
+            <div>
+                <h2>
+                    Moon Phase widget
+                </h2>
+                <p>
+                    Uses the <a href="https://astronomyapi.com/">Astronomy API</a> moon phase studio endpoint to get the
+                    image of the moon from a given location at a given time,
+                    and the <a href="https://aa.usno.navy.mil/data/celnav">US Navy Astonomical Applications
+                        Department</a> Celestial Navigation Data for the phase name and percent illumination,
+                    again using the user's time and location. Defaults to Rochester, NY as the location if errors occur
+                    or the permission is denied.
+                </p>
+                <p>
+                    Uses styling to "flip" to show information, with a hover effect for dynamic interaction.
+                </p>
+            </div>
 
-            <div><span>spanroject</span></div>
+            <div class="clickable-project" onclick="goTo('./pages/hexclock.html')">
+                <h2>HexClock</h2>
+                <p>Single page web app with customizable display. Background color is based on percentage of day using HSL color values.</p>
+                <p>Customization options include speed of hue and saturation changes, font, what character string is used between the displayed data, and an array of information, including the real time to the second, and the currently displayed color.</p>
+            </div>
 
-            <div><span>spanroject</span></div>
+            <div class="clickable-project">
+                <h2>Project</h2>
+                <p></p>
+            </div>
 
-            <div><span>spanroject</span></div>
+            <div class="clickable-project">
+                <h2>Project</h2>
+                <p></p>
+            </div>
+
+            <div>
+                <h2>Credits for this site</h2>
+                <p>Prize winner award badge Icon by Yaicon on <a
+                        href="https://icon-icons.com/authors/1220-yaicon">Icon-Icons.com</a></p>
+                <p>Shoutout MDN and W3 schools</p>
+            </div>
         </div>
 
     </main>
     <footer>
-        Prize winner award badge Icon by Yaicon on <a
-            href="https://icon-icons.com/authors/1220-yaicon">Icon-Icons.com</a>
+
     </footer>
 </body>
 
