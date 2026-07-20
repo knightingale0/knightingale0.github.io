@@ -1,38 +1,46 @@
+:root {
+    --card-bg-color: #382F47;
+    --accent-yellow: #D7841E;
+    --text-color: #f5f1e3;
+    --solid-black: #020202;
+}
+
 body {
-    background-color: #241136;
-    color: #f5f1e3;
+    color: var(--text-color);
+    background-image: url("https://images-assets.nasa.gov/image/iss073e0080327/iss073e0080327~large.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: var(--solid-black);
+    background-position: center;
 }
 
 #grid-container {
     display: flex;
     justify-content: center;
-    height: 300px;
-    flex-direction: row;
     flex-wrap: wrap;
 }
 
-#grid-container>*:not(.subset):not(.picture){
+#grid-container>*:not(.subset):not(.picture) {
     width: 300px;
-    /* height: 300px; */
     height: fit-content;
     margin: 30px;
-    background-color: #111929;
+    background-color: var(--card-bg-color);
     padding: 20px;
-    border-radius: 5%;
+    border-radius: 15px;
 }
 
 .picture {
     border-radius: 50%;
-    border: solid #975B00 5px;
+    border: solid var(--accent-yellow) 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0;
-    margin: 50px;
+    margin: 45px; 
     width: 300px;
     height: 300px;
-    background-color: #111929;
+    background-color: var(--card-bg-color);
 }
 
 .picture-image {
@@ -53,39 +61,28 @@ body {
     margin: 10px;
 }
 
-header {
-    background-color: #111929;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    background-color: #111929;
-}
-
 h2>a {
     text-decoration: none;
-    color: #f5f1e3;
+    color: var(--text-color);
 }
 
 .clickable-project:hover {
     box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.356);
 }
 
-.clickable-project:hover>h2{
-    color: #975B00;
+a {
+    color: var(--accent-yellow);
 }
 
 .subset {
     background-color: none;
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
-.subset > div {
-    background-color: #111929;
-    border-radius: 5%;
-    /* margin-bottom: 20px; */
+.subset>div {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
     width: 300px;
     height: fit-content;
     margin: 30px;
