@@ -9,7 +9,7 @@ const date = (today.getFullYear()) + "-" + (today.getMonth() + 1).toString().pad
 let lat = 43.161030
 let long = -77.610924
 
-function getLocation(){
+function getLocation() {
     // get location, default to rochester
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -61,7 +61,7 @@ async function getMoon() {
 }
 
 async function getPhase() {
-    const url = "https://aa.usno.navy.mil/api/celnav?ID=Knightingale&date=" + date + "&time=" + "00:00" + "&coords="+lat+", "+long+""
+    const url = "https://aa.usno.navy.mil/api/celnav?ID=Knightingale&date=" + date + "&time=" + "00:00" + "&coords=" + lat + ", " + long + ""
     const response = await fetch(url, {
         method: "GET",
     })
