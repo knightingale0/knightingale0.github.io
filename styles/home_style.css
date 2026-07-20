@@ -88,3 +88,9 @@ a {
     margin: 30px;
     padding: 20px;
 }
+
+footer{
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+}
