@@ -72,6 +72,11 @@ h2>a {
 
 a {
     color: var(--accent-yellow);
+    text-decoration: none;
+}
+
+ul {
+    padding-left: 20px
 }
 
 .subset {
