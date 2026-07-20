@@ -1,9 +1,8 @@
+// astronomy api keys
 const username = "c59d4401-3b7d-4e78-b9e2-1afbe0837c84"
 const password = "c3cfeb44eda07f482852183e90e9279d784ac4ed28276538c8fe3c530c14952fb5c1af16e8a654b7d7edd9a9bbff2b71fc71329bbb7604e72666fcdb258fa5d5a333f649bf6e4402c719e7e4a9708483deea49008600f0f39053c91a794718f10794a3b4bddb165967a67b143dfab59d"
 
-// const today = new Date(2025, 4, 6, 11, 45)
 const today = new Date()
-console.log("date=", today)
 const date = (today.getFullYear()) + "-" + (today.getMonth() + 1).toString().padStart(2, "0") + "-" + (today.getDate()).toString().padStart(2, "0")
 
 let lat = 43.161030
@@ -24,7 +23,7 @@ const requestBody = {
         "textColor": "black"
     },
     "observer": {
-        "latitude": lat, // make based on viewer location?
+        "latitude": lat, // make based on viewer location at some point
         "longitude": long, // same as above
         "date": date // make the current date
     },
@@ -64,7 +63,6 @@ async function getPhase() {
     }
 
     const result = await response.json();
-    console.log(result)
     return result.properties
 }
 
