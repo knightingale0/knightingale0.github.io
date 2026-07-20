@@ -1,52 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Portfolio Homepage</title> 
-        <link rel="icon" type="image/x-icon" href="images\star.ico">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-    </head>
+<html>
 
-    <body>
-        <header>
-            <h1>Katie Niederhoff</h1>
-            <p>Hello!</p>
-        </header>
+<head>
+    <title>Portfolio Redesign Homepage</title>
+    <link rel="icon" type="image/x-icon"
+        href="images/prize_winner_award_badge_like_rating_bookmark_favorite_star_icon_210791.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="styles/home_style.css">
+    <script src="script.js" defer></script>
+</head>
 
-        <picture>
-            <img src="images/heic1502a.jpg" alt="a close up image of the Andromeda Galaxy">
-        </picture>
+<body>
+    <main>
+        <div id="grid-container">
 
-        <aside>
-            <h2>Projects:</h2>
-            <ul>
-                <li><a href="pages/final_project/index.html" target="_blank">Sunnarized - class final project</a></li>
-                <li><a href="pages/hexclock.html" target="_blank">Hexclock - color changing customizable clock</a></li>
-                <li><a href="pages/minesweeper.html" target="_blank">Minesweeper</a></li>
-                <li><a href="pages/client-kmn5445-main/public/index.html" target="_blank">Worm Counter frontend</a></li>
-                <li><a href="https://www.figma.com/proto/TvBrkrxUjdsyT5YFJwYeO1/Gaia?node-id=1-2&starting-point-node-id=1%3A2" target="_blank">Gaia - star mapping game prototype</a></li>
-                <li><a href="pages/torrid_glen.html" target="_blank">Torrid Glen - a form of Toroko Gorge</a></li>
-                <li><a href="https://devpost.com/software/connectunes-4vw3ig" target="_blank">Connectunes - Spotify Minigames</a></li>
-            </ul>
+            <div class="subset">
+                <div>
+                    <h2>Katie Niederhoff</h2>
+                </div>
+                <div>
 
-            <h2>Other Links:</h2>
-            <ul>
-                <li><a href="https://www.linkedin.com/in/kniederhoff/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://github.com/knightingale0">Github</a></li>
-            </ul>
-        </aside>
+                    <h2>Important links</h2>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/kniederhoff/" target="_blank" onclick="event.stopPropagation()">LinkedIn</a></li>
+                        <li><a href="https://github.com/knightingale0" target="_blank" onclick="event.stopPropagation()">Github</a></li>
+                    </ul>
+                </div>
+            </div>
 
-        <main>
-            <p>this is a place to see things I've worked on or made or generally thought were cool</p>
-            <p>(see side panel for links!)</p>
-            <p>photo credit <a href="https://esahubble.org/images/heic1502a/" target="_blank">ESA Hubble</a></p>
-        </main>
+            <div>
+                <h2>About</h2>
+                <p>4th year Software Engineering student at <a href="https://www.rit.edu/">Rochester Institute of
+                        Technology.</a></p>
+                <p>
+                    Double minor in Psychology and Book History.
+                </p>
+                <p>
+                    Passionate about space and sustainability.
+                </p>
+                <p>If a card glows on hover, click it to see the project!</p>
+            </div>
 
-        <footer>
-            <p>&copy; Katie Niederhoff 2026</p>
-        </footer>
+            <!-- update this later to pull from linkedin -->
+            <div class="picture" onclick='goTo("https://www.linkedin.com/in/kniederhoff/")'>
+                <img class="picture-image" src="./images/linkedinpfp.jpg">
+            </div>
 
-    </body>
+            <div class="clickable-project" onclick="goTo('./pages/hexclock.html')">
+                <h2>HexClock</h2>
+                <p>Single page web app with customizable display. Background color is based on percentage of day using
+                    HSL color values.</p>
+                <p>Customization options include speed of hue and saturation changes, font, what character string is
+                    used between the displayed data, and an array of information, including the real time to the second,
+                    and the currently displayed color.</p>
+            </div>
+
+            <div class="picture" onclick="flippedMoon()">
+                <img class="picture-image" id="moon-image" src="">
+                <div id="moon-phase-name" display="none"></div>
+                <div id="moon-illum-perc" display="none"></div>
+            </div>
+
+            <div>
+                <h2>
+                    Moon Phase widget
+                </h2>
+                <p>
+                    Uses the <a href="https://astronomyapi.com/" target="_blank" onclick="event.stopPropagation()">Astronomy API</a> moon phase studio
+                    endpoint to get the image of the moon from a given location at a given time, and the <a
+                        href="https://aa.usno.navy.mil/data/celnav" target="_blank" onclick="event.stopPropagation()">US Navy Astonomical Applicationas
+                        Department</a> Celestial Navigation Data for the phase name and percent illumination, again
+                    using the user's real time. Defaults to Rochester, NY as the location.
+                </p>
+                <p>
+                    Uses styling to "flip" to show information, with a hover effect for dynamic interaction.
+                </p>
+            </div>
+
+            <div class="clickable-project" onclick='goTo("https://devpost.com/software/connectunes-4vw3ig")'>
+                <h2>Connectunes</h2>
+                <p>Music themed mini games using user's Spotify data. Created for WicHacks 2026, where we won 1st place for "Best Game Hack".</p>
+                <p>Uses Spotify API and lrclib API to pull user listening data and lyrics for their top songs.</p>
+                <p>Games include a NYT Connections inspired game grouping lyrics, a color by number nonogram using album
+                    art, and ranking songs by number of listens in the last month.</p>
+            </div>
+
+            <div class="clickable-project" onclick='goTo("./pages/minesweeper.html")'>
+                <h2>Minesweeper</h2>
+                <p>Minesweeper game coded in Javascript, based on <a href="https://minesweeperonline.com/"
+                        target="_blank" onclick="event.stopPropagation()">minesweeperonline.com</a> with additional right
+                    click support rather than middle mouse or space bar. I coded this over the course of a week during
+                    my lunch breaks while working and it was a great test of my ability to refactor and design quickly.
+                    It also taught me about a lot of interactive javascript controls I had previously never used.</p>
+            </div>
+
+            <div class="clickable-project" onclick='goTo("https://devpost.com/software/gaia-constellation-mapping")'>
+                <h2>Gaia</h2>
+                <p>Star mapping mini game prototype in figma. Created for WicHacks 2024, won 1st place in "Widget's
+                    Wonders" category for small passion projects.</p>
+                <p>This version of the project is a concept for a mobile game where players can either explore a star
+                    map, drawing their own constellations with the stars visible, or can play in a timed mode, given a
+                    star map from a random location at a random time, and try to find a given constellation within view.
+                </p>
+            </div>
+
+            <div class="clickable-project" onclick='goTo("./pages/torrid_glen.html")'>
+                <h2>Torrid Glen</h2>
+                <p>Based on <a href="https://nickm.com/poems/taroko_gorge/" target="_blank" onclick="event.stopPropagation()">Toroko Gorge</a>, a digital
+                    poem by Nick Montfort.</p>
+                <p>In this poem, lines are generated using word banks and a structured pattern for each line to create
+                    stanzas. My version is meant to evoke the motion of falling water, and uses words related to that
+                    natural environment. </p>
+                <p>This was made for a class assignment for <a href="https://academiccatalog.rit.edu/search/?P=ENGL-215"
+                        target="_blank" onclick="event.stopPropagation()">Text and Code</a>. Inspired by <a
+                        href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" onclick="event.stopPropagation()">Watkins
+                        Glen</a>, the state park in New York's Fingerlakes region. </p>
+            </div>
+
+            <div class="clickable-project" onclick='goTo("./pages/final_project/index.html")'>
+                <h2>Sunnarized</h2>
+                <p>Multipage fictional news site covering brief research on how the COVID-19 pandemic and lockdowns
+                    affected education and remote work options. Created for a class final project to show comptency in
+                    research, HTML and CSS design, with both desktop and mobile display and responsive design.</p>
+            </div>
+
+            <div class="clickable-project" onclick='goTo("./pages/old_home.html")'>
+                <h2>Old Portfolio Site</h2>
+                <p>Previous version of this site, retired as of July 2026</p>
+            </div>
+
+            <div>
+                <h2>Future Projects</h2>
+                <p>Pulling profile picture from linkedin instead a hardcoded image</p>
+                <p>Embedded widget for minesweeper</p>
+                <p>Actually make Gaia</p>
+                <p>Make moon phase use user location instead of current hardcoded Rochester</p>
+            </div>
+
+            <div>
+                <h2>Credits for this site</h2>
+                <p>Prize winner award badge Icon by Yaicon on <a href="https://icon-icons.com/authors/1220-yaicon"
+                        target="_blank" onclick="event.stopPropagation()">Icon-Icons.com</a></p>
+                <p>Background image: <a href="https://images.nasa.gov/details/iss073e0080327" target="_blank" onclick="event.stopPropagation()">NASA -
+                        Johnson Space Center</a></p>
+                <p>Shoutout MDN and W3 schools</p>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <p>© Katie Niederhoff 2026</p>
+    </footer>
+</body>
+
 </html>

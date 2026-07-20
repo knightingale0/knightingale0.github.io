@@ -278,7 +278,7 @@
 		return [coord1, coord2, coord3, coord4, coord5, coord6, coord7, coord8];
 	}
 
-	function setBoard(rows=5, cols=5, clickedrow = 0, clickedcol = 0) {
+	function setBoard(rows = 5, cols = 5, clickedrow = 0, clickedcol = 0) {
 		ROWS = rows;
 		COLS = cols;
 		FIRST_CLICK = true;
@@ -290,7 +290,7 @@
 	}
 
 	$(document).ready(function () {
-		setBoard(5,5);
+		setBoard(5, 5);
 	});
 
 	document.addEventListener('contextmenu', event => event.preventDefault());
