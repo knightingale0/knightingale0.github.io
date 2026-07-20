@@ -101,7 +101,7 @@ function goTo(target) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-    await getLocation()
+    // await getLocation()
     try {
         image = await getMoon()
         properties = await getPhase()
