@@ -1,9 +1,0 @@
-{
-    "livePreview.defaultPreviewPath": "/index.html",
-    "python.defaultInterpreterPath": "C:\\Python314\\python.exe",
-    "python.terminal.activateEnvironment": false,
-    "code-runner.executorMap": {
-        "python": "C:\\Python314\\python.exe"
-    },
-    "python-envs.defaultEnvManager": "ms-python.python:system"
-}
