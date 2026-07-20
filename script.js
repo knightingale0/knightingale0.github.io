@@ -9,13 +9,6 @@ const date = (today.getFullYear()) + "-" + (today.getMonth() + 1).toString().pad
 let lat = 43.161030
 let long = -77.610924
 
-function getLocation() {
-    // get location, default to rochester
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
-}
-
 function showPosition(pos) {
     lat = pos.coords.latitude
     long = pos.coords.longitude
@@ -101,7 +94,6 @@ function goTo(target) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-    // await getLocation()
     try {
         image = await getMoon()
         properties = await getPhase()
