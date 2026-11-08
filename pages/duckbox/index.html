@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>Duckbox</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="scripts/game.js"></script></script>
+        <script src="scripts/items.js"></script></script>
+        <script src="scripts/inventories.js"></script></script>
+    </head>
+
+    <body>
+        <main>
+            <div id="main">
+                <div id="field">
+                    <div class="thing pond" data-name="pond" style="left: 10%; top: 60%">
+                        <img src="images/pond.png">
+                    </div>
+                    <button onclick="resetAll()">Reset State</button>
+                    <div class="thing controls" id="garbage-can">
+                        <img src="images/trashcan.png">
+                    </div>
+
+                </div>
+                <div id="sidebar">
+                    <div id="duck-storage">
+                        <div class="list-controls">
+                            Ducks
+                            <!-- <button class="reset" onclick="resetDucks()">clear</button> -->
+                            <button onclick="generateNewDuck()">New Duck</button>
+                        </div>
+                        <div id="duck-list">
+                        </div>
+                    </div>
+                    <div id="item-storage">
+                        <div class="list-controls">
+                            Food and Inventory
+                            <!-- <button class="reset" onclick="resetItems()">clear</button> -->
+                            <button onclick="generateHammer()">hammer</button>
+                        </div>
+                        <div id="item-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+        <footer>
+            <p>by katie and draco</p>
+        </footer>
+    </body>
+
+    <!-- notes:
+        pond - can pull water
+
+        time progression
+            put items on screen to have them do stuff, i.e. seeds grow into plants
+
+        weeds can grow, can harvest them for more seeds, flowers
+
+        ducks lay eggs, feathers, type based resources
+
+        feeding to grow up
+
+        vending machine
+            sells eggs that just crack upon purchasing
+                "you did what to the egg"
+
+        can bonk with hammer, chance to explode
+
+        talk to ducks
+            quacks, ai integration
+
+        set of duck types
+            basic - basic egg, feather
+                color options
+                
+            fishing duck - lets you do fishing minigame, gives fish automatically over time
+            hack.coms - blue, inspect element and uncomment a line "hack", input a line into the chat feature?
+            wic duck - same as above
+                also wicys, ritsec, sse, etc.
+            Canada duck - goose
+            Australia duck - upside down
+            magic duck - magic dust, 
+        decoration - later feature
+    -->
+
+</html>
