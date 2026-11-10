@@ -23,9 +23,10 @@
 
                     <h2>Important links</h2>
                     <ul>
-                        <li><a href="https://www.linkedin.com/in/kniederhoff/" target="_blank" onclick="event.stopPropagation()">LinkedIn</a></li>
-                        <li><a href="https://github.com/knightingale0" target="_blank" onclick="event.stopPropagation()">Github</a></li>
-                        <li><a href="./pages/duckbox/index.html" target="_blank" onclick="event.stopPropagation()">Game</a></li>
+                        <li><a href="https://www.linkedin.com/in/kniederhoff/" target="_blank"
+                                onclick="event.stopPropagation()">LinkedIn</a></li>
+                        <li><a href="https://github.com/knightingale0" target="_blank"
+                                onclick="event.stopPropagation()">Github</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,14 +56,15 @@
                 <p>Customization options include speed of hue and saturation changes, font, what character string is
                     used between the displayed data, and an array of information, including the real time to the second,
                     and the currently displayed color.</p>
+                <img src="./images/hexclockCover.png" width="100%" style="border-radius: 5%">
             </div>
-
+            <!-- 
             <div class="picture" onclick="flippedMoon()">
                 <img class="picture-image" id="moon-image" src="">
                 <div id="moon-phase-name" display="none"></div>
                 <div id="moon-illum-perc" display="none"></div>
             </div>
-
+            
             <div>
                 <h2>
                     Moon Phase widget
@@ -70,27 +72,40 @@
                 <p>
                     Uses the <a href="https://astronomyapi.com/" target="_blank" onclick="event.stopPropagation()">Astronomy API</a> moon phase studio
                     endpoint to get the image of the moon from a given location at a given time, and the <a
-                        href="https://aa.usno.navy.mil/data/celnav" target="_blank" onclick="event.stopPropagation()">US Navy Astonomical Applicationas
-                        Department</a> Celestial Navigation Data for the phase name and percent illumination, again
+                    href="https://aa.usno.navy.mil/data/celnav" target="_blank" onclick="event.stopPropagation()">US Navy Astonomical Applicationas
+                    Department</a> Celestial Navigation Data for the phase name and percent illumination, again
                     using the user's real time. Defaults to Rochester, NY as the location.
                 </p>
                 <p>
                     Uses styling to "flip" to show information, with a hover effect for dynamic interaction.
                 </p>
             </div>
+            -->
+
+            <div class="clickable-project" onclick='goTo("./pages/duckbox/index.html")'>
+                <h2>DuckBox</h2>
+                <p>Browser sandbox idle game about feeding ducks. Created for Hack.COMS 2026 with <a
+                        href="https://github.com/Nogardagem" target="_blank" onclick="event.stopPropagation()">Draco
+                        DelToro</a></p>
+                <p>JavaScript functions to allow gameplay using basic HTML elements, primarily div elements.</p>
+                <img src="./images/duckbox.png" width="100%" style="border-radius: 5%">
+            </div>
 
             <div class="clickable-project" onclick='goTo("https://devpost.com/software/connectunes-4vw3ig")'>
                 <h2>Connectunes</h2>
-                <p>Music themed mini games using user's Spotify data. Created for WicHacks 2026, where we won 1st place for "Best Game Hack".</p>
+                <p>Music themed mini games using user's Spotify data. Created for WicHacks 2026, where we won 1st place
+                    for "Best Game Hack".</p>
                 <p>Uses Spotify API and lrclib API to pull user listening data and lyrics for their top songs.</p>
                 <p>Games include a NYT Connections inspired game grouping lyrics, a color by number nonogram using album
                     art, and ranking songs by number of listens in the last month.</p>
+                <img src="./images/connectunes.jpg" width="100%" style="border-radius: 5%">
             </div>
 
             <div class="clickable-project" onclick='goTo("./pages/minesweeper.html")'>
                 <h2>Minesweeper</h2>
                 <p>Minesweeper game coded in Javascript, based on <a href="https://minesweeperonline.com/"
-                        target="_blank" onclick="event.stopPropagation()">minesweeperonline.com</a> with additional right
+                        target="_blank" onclick="event.stopPropagation()">minesweeperonline.com</a> with additional
+                    right
                     click support rather than middle mouse or space bar. I coded this over the course of a week during
                     my lunch breaks while working and it was a great test of my ability to refactor and design quickly.
                     It also taught me about a lot of interactive javascript controls I had previously never used.</p>
@@ -108,14 +123,16 @@
 
             <div class="clickable-project" onclick='goTo("./pages/torrid_glen.html")'>
                 <h2>Torrid Glen</h2>
-                <p>Based on <a href="https://nickm.com/poems/taroko_gorge/" target="_blank" onclick="event.stopPropagation()">Toroko Gorge</a>, a digital
+                <p>Based on <a href="https://nickm.com/poems/taroko_gorge/" target="_blank"
+                        onclick="event.stopPropagation()">Toroko Gorge</a>, a digital
                     poem by Nick Montfort.</p>
                 <p>In this poem, lines are generated using word banks and a structured pattern for each line to create
                     stanzas. My version is meant to evoke the motion of falling water, and uses words related to that
                     natural environment. </p>
                 <p>This was made for a class assignment for <a href="https://academiccatalog.rit.edu/search/?P=ENGL-215"
                         target="_blank" onclick="event.stopPropagation()">Text and Code</a>. Inspired by <a
-                        href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank" onclick="event.stopPropagation()">Watkins
+                        href="https://parks.ny.gov/visit/state-parks/watkins-glen-state-park" target="_blank"
+                        onclick="event.stopPropagation()">Watkins
                         Glen</a>, the state park in New York's Fingerlakes region. </p>
             </div>
 
@@ -133,9 +150,10 @@
 
             <div>
                 <h2>Credits for this site</h2>
-                <p>Icon: <a href="https://icon-icons.com/authors/1220-yaicon"
-                        target="_blank" onclick="event.stopPropagation()">Icon-Icons.com</a></p>
-                <p>Background image: <a href="https://images.nasa.gov/details/iss073e0080327" target="_blank" onclick="event.stopPropagation()">NASA -
+                <p>Icon: <a href="https://icon-icons.com/authors/1220-yaicon" target="_blank"
+                        onclick="event.stopPropagation()">Icon-Icons.com</a></p>
+                <p>Background image: <a href="https://images.nasa.gov/details/iss073e0080327" target="_blank"
+                        onclick="event.stopPropagation()">NASA -
                         Johnson Space Center</a></p>
             </div>
         </div>
